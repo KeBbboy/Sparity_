@@ -135,6 +135,7 @@ class GenInferencer(BaseInferencer):
 
         start_time_stamp = time.time()
         num_sample = 0
+ 
         for datum in tqdm(dataloader, disable=not self.is_main_process):
             if ds_reader.output_column:
                 entry, golds = list(zip(*datum))
@@ -174,8 +175,9 @@ class GenInferencer(BaseInferencer):
                 output_handler.write_to_json(output_json_filepath,
                                              'tmp_' + output_json_filename)
             num_sample += len(datum)
+            torch.cuda.empty_cache()
 
-        end_time_stamp = time.time()
+            end_time_stamp = time.time()
 
         # 6. Output
         if self.is_main_process:

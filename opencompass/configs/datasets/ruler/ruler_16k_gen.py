@@ -10,10 +10,10 @@ with read_base():
     from .ruler_vt_gen import vt_datasets as vt  # VT
 
 
-import_ds = sum((cwe, fwe, niah, qa, vt), [])
+import_ds = cwe
 
 # Evaluation config
-NUM_SAMPLES = 100 # Change to the number of samples you need
+NUM_SAMPLES = 50 # Change to the number of samples you need
 tokenizer_model = os.environ.get('TOKENIZER_MODEL', 'gpt-4')
 # Change the context lengths to be tested
 max_seq_lens = [1024 * 16]

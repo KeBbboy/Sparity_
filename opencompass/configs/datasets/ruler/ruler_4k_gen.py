@@ -8,9 +8,9 @@ with read_base():
     from .ruler_niah_gen import niah_datasets as niah  # Niah
     from .ruler_qa_gen import qa_datasets as qa  # QA
     from .ruler_vt_gen import vt_datasets as vt  # VT
+    
 
-
-import_ds = sum((cwe, fwe, niah, qa, vt), [])
+import_ds = cwe
 
 # Evaluation config
 NUM_SAMPLES = 100  # Change to the number of samples you need

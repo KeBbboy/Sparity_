@@ -4,10 +4,19 @@ from opencompass.openicl.icl_inferencer import GenInferencer
 from opencompass.datasets import CustomDataset
 from opencompass.evaluator import GenericLLMEvaluator
 from opencompass.datasets import generic_llmjudge_postprocess
+from opencompass.datasets import Aime2024Dataset, MATHEvaluator
+from opencompass.partitioners import NaivePartitioner, SizePartitioner
+from opencompass.runners import LocalRunner
+from opencompass.tasks import OpenICLInferTask, OpenICLEvalTask
+from mmengine.config import read_base
+
+with read_base():
+    from opencompass.configs.models.qwen2_5.lmdeploy_qwen2_5_14b_instruct import (
+        models as judge_model,
+    )
+
 
 aime2025_reader_cfg = dict(input_columns=['question'], output_column='answer')
-
-
 aime2025_infer_cfg = dict(
     prompt_template=dict(
         type=PromptTemplate,
@@ -21,7 +30,7 @@ aime2025_infer_cfg = dict(
         ),
     ),
     retriever=dict(type=ZeroRetriever),
-    inferencer=dict(type=GenInferencer),
+    inferencer=dict(type=GenInferencer, max_out_len=1024),
 )
 
 
@@ -73,10 +82,12 @@ aime2025_eval_cfg = dict(
             path='opencompass/aime2025',
             reader_cfg=aime2025_reader_cfg,
         ),
-        judge_cfg=dict(),
+        judge_cfg=judge_model[0],
         dict_postprocessor=dict(type=generic_llmjudge_postprocess),
     ),
 )
+
+
 
 aime2025_datasets = [
     dict(

@@ -159,6 +159,6 @@ LCBTestOutput_dataset = dict(
 
 LCB_datasets = [
     LCBCodeGeneration_dataset,
-    LCBCodeExecution_dataset,
-    LCBTestOutput_dataset,
+    # LCBCodeExecution_dataset,
+    # LCBTestOutput_dataset,
 ]

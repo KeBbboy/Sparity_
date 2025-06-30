@@ -23,7 +23,7 @@ LongBench_multifieldqa_en_infer_cfg = dict(
         ),
     ),
     retriever=dict(type=ZeroRetriever),
-    inferencer=dict(type=GenInferencer, max_out_len=64),
+    inferencer=dict(type=GenInferencer, max_out_len=32),
 )
 
 LongBench_multifieldqa_en_eval_cfg = dict(

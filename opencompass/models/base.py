@@ -33,7 +33,7 @@ class BaseModel:
 
     def __init__(self,
                  path: str,
-                 max_seq_len: int = 2048,
+                 max_seq_len: int = 16384,
                  tokenizer_only: bool = False,
                  meta_template: Optional[Dict] = None,
                  generation_kwargs: Optional[Dict] = dict(),

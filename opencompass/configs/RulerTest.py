@@ -1,0 +1,113 @@
+
+from mmengine.config import read_base
+import torch
+
+with read_base():
+    # from .datasets.gsm8k.gsm8k_gen import gsm8k_datasets  # 修改变量名以匹配数据集
+    # # ===== Single-document QA =====
+    # from .datasets.longbench.longbenchnarrativeqa.longbench_narrativeqa_gen import LongBench_narrativeqa_datasets
+    # from .datasets.longbench.longbenchqasper.longbench_qasper_gen import LongBench_qasper_datasets
+    # from .datasets.longbench.longbenchmultifieldqa_en.longbench_multifieldqa_en_gen import LongBench_multifieldqa_en_datasets
+    # from .datasets.longbench.longbenchmultifieldqa_zh.longbench_multifieldqa_zh_gen import LongBench_multifieldqa_zh_datasets
+
+    # # ===== Multi-document QA =====
+    # from .datasets.longbench.longbenchhotpotqa.longbench_hotpotqa_gen import LongBench_hotpotqa_datasets
+    # from .datasets.longbench.longbench2wikimqa.longbench_2wikimqa_gen import LongBench_2wikimqa_datasets
+    # from .datasets.longbench.longbenchmusique.longbench_musique_gen import LongBench_musique_datasets
+    # from .datasets.longbench.longbenchdureader.longbench_dureader_gen import LongBench_dureader_datasets
+
+    # # ===== Summarization =====
+    # from .datasets.longbench.longbenchgov_report.longbench_gov_report_gen import LongBench_gov_report_datasets
+    # from .datasets.longbench.longbenchqmsum.longbench_qmsum_gen import LongBench_qmsum_datasets
+    # from .datasets.longbench.longbenchmulti_news.longbench_multi_news_gen import LongBench_multi_news_datasets
+    # from .datasets.longbench.longbenchvcsum.longbench_vcsum_gen import LongBench_vcsum_datasets
+
+    # # ===== Few-shot Learning =====
+    # from .datasets.longbench.longbenchtrec.longbench_trec_gen import LongBench_trec_datasets
+    # from .datasets.longbench.longbenchlsht.longbench_lsht_gen import LongBench_lsht_datasets
+    # from .datasets.longbench.longbenchsamsum.longbench_samsum_gen import LongBench_samsum_datasets
+    # from .datasets.longbench.longbenchtriviaqa.longbench_triviaqa_gen import LongBench_triviaqa_datasets
+
+    # # ===== Synthetic Task =====
+    # from .datasets.longbench.longbenchpassage_count.longbench_passage_count_gen import LongBench_passage_count_datasets
+    # from .datasets.longbench.longbenchpassage_retrieval_en.longbench_passage_retrieval_en_gen import LongBench_passage_retrieval_en_datasets
+    # from .datasets.longbench.longbenchpassage_retrieval_zh.longbench_passage_retrieval_zh_gen import LongBench_passage_retrieval_zh_datasets
+
+    # # ===== Code Completion =====
+    # from .datasets.longbench.longbenchlcc.longbench_lcc_gen import LongBench_lcc_datasets
+    # from .datasets.longbench.longbenchrepobench.longbench_repobench_gen import LongBench_repobench_datasets
+
+    # from .datasets.ruler.ruler_1m_gen import ruler_datasets as ruler_1m_ds
+    # from .datasets.ruler.ruler_4k_gen import ruler_datasets as ruler_4k_ds
+    # from .datasets.ruler.ruler_8k_gen import ruler_datasets as ruler_8k_ds
+    # from .datasets.ruler.ruler_16k_gen import ruler_datasets as ruler_16k_ds
+    # from .datasets.ruler.ruler_32k_gen import ruler_datasets as ruler_32k_ds
+    # from .datasets.ruler.ruler_64k_gen import ruler_datasets as ruler_64k_ds
+    # from .datasets.ruler.ruler_128k_gen import ruler_datasets as ruler_128k_ds
+    # from  .datasets.ruler.ruler_cwe_gen import cwe_datasets as cwe  # CWE
+
+    # =====================32k ========================
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_2needle_en_datasets as needlebench_multi_2needle_en_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_3needle_en_datasets as needlebench_multi_3needle_en_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_4needle_en_datasets as needlebench_multi_4needle_en_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_5needle_en_datasets as needlebench_multi_5needle_en_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_2needle_zh_datasets as needlebench_multi_2needle_zh_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_3needle_zh_datasets as needlebench_multi_3needle_zh_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_4needle_zh_datasets as needlebench_multi_4needle_zh_datasets
+    from .datasets.needlebench.needlebench_4k.needlebench_multi_reasoning_4k import needlebench_5needle_zh_datasets as needlebench_multi_5needle_zh_datasets
+
+
+needlebench_datasets = sum((v for k, v in locals().items() if k.endswith('_datasets')), [])
+
+# 将需要评测的数据集拼接成 datasets 字段
+datasets = [
+    *needlebench_datasets   
+]
+# datasets = [
+    # ===== Single-document QA =====
+    # *LongBench_narrativeqa_datasets,
+    # *LongBench_qasper_datasets,
+    # *LongBench_multifieldqa_en_datasets,
+    # *LongBench_multifieldqa_zh_datasets,
+
+    # # ===== Multi-document QA =====
+    # *LongBench_hotpotqa_datasets,
+    # *LongBench_2wikimqa_datasets,
+    # *LongBench_musique_datasets,
+    # *LongBench_dureader_datasets,
+
+    # # ===== Summarization =====
+    # *LongBench_gov_report_datasets,
+    # *LongBench_qmsum_datasets,
+    # *LongBench_multi_news_datasets,
+    # *LongBench_vcsum_datasets,
+
+    # # ===== Few-shot Learning =====
+    # *LongBench_trec_datasets,
+    # *LongBench_lsht_datasets,
+    # *LongBench_samsum_datasets,
+    # *LongBench_triviaqa_datasets,
+
+    # # ===== Synthetic Task =====
+    # *LongBench_passage_count_datasets,
+    # *LongBench_passage_retrieval_en_datasets,
+    # *LongBench_passage_retrieval_zh_datasets,
+
+    # # ===== Code Completion =====
+    # *LongBench_lcc_datasets,
+    # *LongBench_repobench_datasets,
+# ]
+
+
+from opencompass.models import HuggingFace
+
+models = [
+    dict(
+        type=HuggingFace,
+        abbr='llama-3_1-8b-instruct-turbomind',
+        path='meta-llama/Meta-Llama-3.1-8B-Instruct',
+        max_seq_len=32768,
+        max_out_len=4096,
+        batch_size=1,
+    )
+]

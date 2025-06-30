@@ -27,7 +27,8 @@ LongBench_qasper_infer_cfg = dict(
 )
 
 LongBench_qasper_eval_cfg = dict(
-    evaluator=dict(type=LongBenchF1Evaluator), pred_role='BOT'
+    evaluator = dict(type=LongBenchF1Evaluator),
+    pred_role='BOT'
 )
 
 LongBench_qasper_datasets = [

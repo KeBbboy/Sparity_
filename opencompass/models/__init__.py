@@ -49,3 +49,7 @@ from .yayi_api import Yayi  # noqa: F401
 from .yi_api import YiAPI  # noqa: F401
 from .zhipuai_api import ZhiPuAI  # noqa: F401
 from .zhipuai_v2_api import ZhiPuV2AI  # noqa: F401
+
+# add by keyichen
+from .Sparity_methods.Replace_LlamaAttentionConvert import \
+    Replace_LlamaAttentionConvert
